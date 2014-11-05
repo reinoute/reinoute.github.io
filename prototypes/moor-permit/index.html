@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<head>
+  <title>MOOR</title>
+  <link rel="stylesheet" href="./styles/reset.css" type="text/css" media="screen, print">
+  <link rel="stylesheet" href="./styles/shared.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="./styles/pages.css" type="text/css" media="screen" />   
+  <link rel="stylesheet" href="./styles/print.css" type="text/css" media="print">
+  <!--[if lt IE 8]>
+  <link rel="stylesheet" href="./styles/iescreen.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="./styles/ieprint.css" type="text/css" media="print">
+  <![endif]-->  
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBHhnlK9aEZCL9BPy5_T0iO_fP_cHyUUdo&sensor=false">
+  </script>
+  <script type="text/javascript" src="./js/application.js"></script>
+</head>
+<body onload="initialize()">
+<!-- menu placeholder -->
+<div id="nav" style="height: 70px; background-color: #4C4C4C;">
+</div>
+<!-- permit task list -->
+<div id="tl">
+  <ul>
+    <li><a href="javascript:void(0)" onclick="showPanelAssessPermit()"><img src="./img/tasklist.png" alt="" style=
+       "vertical-align: middle"/>&nbsp;&nbsp;&nbsp;Beoordelen vergunningaanvraag</a></li>
+  </ul>
+</div>
+<div id="assesspermit" class="tp">
+  <form action="post">
+    <div>Als u deze vergunning goedkeurt dan kan ENEXIS - Regio Noord meldingen indienen voor deze vergunning.</div>
+    <input type="radio" id="approve" name="assess" value="approve" checked />
+    <dl class="fieldsetapprove selected">
+      <dt class="radiobtn"><label for="approve" class="approve">Goedkeuren</label></dt>
+      <dd>&nbsp;</dd>
+      <dt><label for="costs" class="required">Legeskosten</label></dt>
+      <dd><input type="text" id="costs" size="3" maxlength="5" placeholder="0,00" /> &#8364;</dd>
+      <dt><label for="requestedperiod" class="required">Geldigheidsperiode</label></dt>
+      <dd><input type="text" id="validityfrom" size="7" maxlength="5" value="23/3/2012" /> t/m <input type="text" id="validityto" size="7" maxlength="5" value="28/3/2012" /></dd>
+      <dt><label for="referencepsm" class="required">Kenmerk gemeente</label></dt>
+      <dd><input type="text" id="costs" size="15" maxlength="20" /><br /></dd>
+      <dt><label for="externalcommentapprove" class="required">Externe opmerking</label></dt>
+      <dd><textarea id="externalcommentapprove" rows="2" cols="60"></textarea></dd>
+      <dt><label for="internalcomment">Interne opmerking</label></dt>
+      <dd><textarea id="internalcomment" rows="2" cols="60"></textarea></dd>     
+    </dl>
+    <input type="radio" id="reject" name="assess" value="reject" />
+    <dl class="fieldsetreject">
+      <dt class="radiobtn"><label for="reject" class="reject">Afkeuren</label></dt>
+      <dd>&nbsp;</dd>
+      <dt><label for="externalcommentreject" class="required">Externe opmerking</label></dt>          
+      <dd><textarea id="externalcommentreject" rows="2" cols="60"></textarea></dd>       
+    </dl>
+    <div class="submitform">
+      <input type="button" name="save" value="Bevestigen" onclick="assessPermitSubmit();" />
+   </div>
+  </form>
+</div>
+<!-- permit details page -->
+<div id="dp" class="pe bbs">
+  <div id="dphead">
+    <h1>Vergunning 1623</h1>
+    <a href="#"><img src="./img/icons/pdf.png" alt="" /></a>
+    <a href="#" onclick="window.print();return false;"><img src="./img/icons/print.png" alt="" /></a>  
+  </div>
+  <h2>Vergunningaanvraag</h2>
+  <dl>
+    <dt>Status</dt>
+    <dd>Toegewezen <span class="desc">(24-2-2012 10:15 John Schoenmaker - ENEXIS - Regio West)</span> <a href="#" class="viewhistory">geschiedenis weergeven</a></dd>
+    <dt>Netbeheerder</dt>
+    <dd>ENEXIS - Regio Noord <span class="desc">(030-1234567; <a href="#">email@enexis.nl</a>)</span></dd>
+    <dt>Aanvrager</dt>
+    <dd>John de Vries <span class="desc">(aangevraagd op 23-2-2012 10:13)</span></dd>
+  </dl>
+  <dl class="editable">
+    <button type="submit" class="edit" title="Wijzigen"><img src="./img/icons/popout.png" alt="" /></button>
+    <dt>Wegbeheerder</dt>
+    <dd>Amsterdam - Noord <span class="desc">(030-1234567; <a href="#">email@amsterdam.nl</a>)</span></dd>
+    <dt>Type werk</dt>
+    <dd>Klein geprogrammeerd werk</dd>
+    <dt>Gewenste periode</dt>
+    <dd>2-1-2012 - 20-2-2012</dd>
+    <dt>Adres</dt>
+    <dd>Kerkstraat 300, 1234AB Amsterdam</dd>
+    <dt>&nbsp;</dt>
+    <dd><div id="map_canvas" class="dpmap" style="width: 100%; height: 200px"></div></dd> 
+    <dt>Type vergunning</dt>
+    <dd>Instemmingsbesluit</dd>
+    <dt>Functie van locatie</dt>
+    <dd>Brug, Groenstrook</dd>
+    <dt>Doel van activiteiten</dt>
+    <dd>Hier komt een beschrijving van de activiteiten.</dd>
+    <dt>Voorziene verkeersmaatregelen</dt>
+    <dd>Omleiding om de kerk.</dd>
+    <dt>Kabels en leidingen</dt>
+    <dd><span class="innerlabel">Materialen</span>: Kabel - Koper, Kabel - Glas, Anders: Pijp - PE<br/><span class="innerlabel">Doel</span>: Transportleiding, Distributieleiding</dd>
+    <dt>Gewenste tracee</dt>
+    <dd>Aanleg leidingen, Omleggen leidingen</dd>
+    <dt>Omvang werkzaamheden</dt>
+    <dd>
+      <ul>
+        <li>12 boringen</li>
+        <li>0 persingen</li>
+        <li>30m lengte tracee</li>
+        <li>90m2 totale oppervlakte werkzaamheden</li>
+      </ul>      
+    </dd>
+    <dt>Kenmerk netbeheerder</dt>
+    <dd>AS612323</dd>
+    <dt>Overig</dt>
+    <dd>Dit is een veld voor een opmerking.</dd>
+  </dl>
+  <h2>Beoordeling vergunningaanvraag</h2>
+  <dl class="editable">
+    <button type="submit" class="edit" title="Wijzigen"><img src="./img/icons/popout.png" alt="" /></button>
+    <dt>Extern commentaar</dt>
+    <dd>Dit is een opmerking waarom de vergunning is goedgekeurd of afgewezen.</dd>
+    <dt>Intern commentaar</dt>
+    <dd>Opmerking die alleen zichtbaar is voor de gemeente.</dd>
+    <dt>Kenmerk gemeente</dt>
+    <dd>VG-612312312</dd>
+    <dt>Geldigheidsperiode</dt>
+    <dd>24-2-2012 - 24-2-2012</dd>
+    <dt>Legeskosten</dt>
+    <dd>150,00 &#8364;</dd>
+  </dl>  
+</div>
+<!-- details page sidebar -->
+<div id="dpsb" class="bbs">
+  <div id="actionlist">
+    <h1>Toegestane acties</h1>
+    <ul class="allowedactions">
+      <li><a href="#">Verwijderen vergunningaanvraag</a></li>
+      <li><a href="#">Staken lopende vergunning</a></li>
+      <li><a href="#">Hervatten gestaakte vergunning</a></li>
+      <li><a href="#">Melding indienen voor deze vergunning</a></li>
+    </ul>
+  </div>
+  <div id="relatedto">
+    <h1>Gerelateerd aan</h1>
+    <ul class="relatedto">
+      <li><img src="./img/icons/project.png" alt="" /><a href="#">Project 61233</a><br /><span class="desc">Hier komt de naam van het project</span></li>
+      <li><img src="./img/icons/roadwork.png" alt="" /><a href="#">Melding 23</a> <span class="status">(Goedkeuring aangevraagd)</span><br /><span class="desc">Voorstraat 16, 1234 Amsterdam. 3/2/2012 8:00 - 3/2/2012 14:00</span></li>
+      <li><img src="./img/icons/roadwork.png" alt="" /><a href="#">Melding 235</a> <span class="status">(Afgekeurd)</span><br /><span class="desc">Voorstraat 16, 1234 Amsterdam. 1/2/2012 8:00 - 2/2/2012 14:00</span></li>
+    </ul>
+  </div>
+  <div id="attachments">
+    <h1>Bijlagen <span class="manage">(<a href="#">bijlagen wijzigen</a>)</span></h1>
+    <ul class="attachments">
+      <li><span class="date">10/02</span> <a href="#">Naam bijlage 1</a></li>
+      <li><span class="date">04/02</span> <a href="#">Naam bijlage 2</a></li>
+      <li><span class="date">03/02</span> <a href="#">Naam bijlage 3</a></li>
+      <li><span class="date">01/02</span> <a href="#">Naam bijlage 4</a></li>
+      <li><span class="date">01/02</span> <a href="#">Naam bijlage 4</a></li>
+    </ul>
+    <div class="showall"><a href="#">Alle (11) bijlagen weergeven...</a></div>
+  </div>
+  <div id="notes">
+    <h1>Notities <span class="manage">(<a href="#">notities wijzigen</a>)</span></h1>
+    <ul class="notes">
+      <li>
+        <ul>
+          <li class="author">Peter van de Horst <span class="organisation">(ENEXIS - Regio Noord)</span></li>
+          <li class="notetxt">Opmerking hier. Die kan meerdere regels in beslag nemen. Dit is een test. </li>
+          <li class="timestamp">20-02-2012 10:15</li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li class="author">Peter van de Horst <span class="organisation">(ENEXIS - Regio Noord)</span></li>
+          <li class="notetxt">Opmerking hier. Die kan meerdere regels in beslag nemen. Dit is een test.</li>
+          <li class="timestamp">20-02-2012 10:15</li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li class="author">Peter van de Horst <span class="organisation">(ENEXIS - Regio Noord)</span></li>
+          <li class="notetxt">Opmerking hier. Die kan meerdere regels in beslag nemen. Dit is een test.</li>
+          <li class="timestamp">20-02-2012 10:15</li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li class="author">Peter van de Horst <span class="organisation">(ENEXIS - Regio Noord)</span></li>
+          <li class="notetxt">Opmerking hier. Die kan meerdere regels in beslag nemen. Dit is een test.</li>
+          <li class="timestamp">20-02-2012 10:15</li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li class="author">Peter van de Horst <span class="organisation">(ENEXIS - Regio Noord)</span></li>
+          <li class="notetxt">Opmerking hier. Die kan meerdere regels in beslag nemen. Dit is een test.</li>
+          <li class="timestamp">20-02-2012 10:15</li>
+        </ul>
+      </li>
+    </ul>
+    <div class="showall"><a href="#">Alle (8) notities weergeven...</a></div>
+  </div>
+</div>
+</body>
+</html>
