@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<head>
+  <title>MOOR</title>
+  <link rel="stylesheet" href="./styles/reset.css" type="text/css" media="screen, print">
+  <link rel="stylesheet" href="./styles/shared.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="./styles/pages.css" type="text/css" media="screen" />   
+  <link rel="stylesheet" href="./styles/print.css" type="text/css" media="print">
+  <!--[if lt IE 8]>
+  <link rel="stylesheet" href="./styles/iescreen.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="./styles/ieprint.css" type="text/css" media="print">
+  <![endif]-->  
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBHhnlK9aEZCL9BPy5_T0iO_fP_cHyUUdo&sensor=false">
+  </script>
+  <script type="text/javascript" src="./js/application.js"></script>
+</head>
+<body onload="initialize()">
+<!-- menu placeholder -->
+<div id="nav" style="height: 100px; background-color: #4C4C4C;">
+</div>
+<!-- permit task list -->
+<div id="tl">
+  <ul>
+    <li><a href="#"><img src="./img/tasklist.png" alt="" style=
+       "vertical-align: middle"/>&nbsp;&nbsp;&nbsp;Publish project</a></li>
+  </ul>
+</div>
+<!-- permit details page -->
+<div id="dp" class="pr bbs">
+  <div id="dphead">
+    <h1>Project 16234234</h1>
+    <a href="#"><img src="./img/icons/pdf.png" alt="" /></a>
+    <a href="#" onclick="window.print();return false;"><img src="./img/icons/print.png" alt="" /></a>  
+  </div>  
+  <h2>Project details</h2>  
+  <dl>
+    <dt>PSM</dt>
+    <dd>Amsterdam - Noord <span class="desc">(030-1234567; <a href="#">email@amsterdam.nl</a>)</span></dd>
+  </dl>
+  <dl class="editable">
+    <button type="submit" class="edit" title="Wijzigen"><img src="./img/icons/popout.png" alt="" /></button>
+    <dt>Project name</dt>
+    <dd>This is a long project name. But it can be longer.</dd>
+    <dt>Internal reference</dt>
+    <dd>PR-6123123</dd>
+    <dt>Type</dt>
+    <dd>Cables, Pipes and Sewers</dd>
+    <dt>Work description</dt>
+    <dd>This is a lot of work.</dd>
+    <dt>Period</dt>
+    <dd>11/1/2011 -  10/29/2012</dd>
+  </dl>
+  <dl class="editable">
+    <button type="submit" class="edit" title="Wijzigen"><img src="./img/icons/popout.png" alt="" /></button>
+    <dt>Coordinator</dt>
+    <dd>ENEXIS - Regio Noord <span class="desc">(Gas; 030-1234567; <a href="#">email@enexis.nl</a>)</span></dd>
+    <dt>Partners</dt>
+    <dd>KPN - Regio Noord <span class="desc">(Telecom; 030-1234567; <a href="#">email@enexis.nl</a>)</span><br />Chris Slater - WML - Region North <span class="desc">(Water; 030-1234567; <a href="#">email@enexis.nl</a>)</span><br />Gaston Gaslon - ENEXIS - Region North<span class="desc">(Gas; 030-1234567; <a href="#">email@enexis.nl</a>)</span></dd>
+  </dl>
+  <dl class="editable"> 
+    <button type="submit" class="edit" title="Wijzigen"><img src="./img/icons/popout.png" alt="" /></button>
+    <dt>Location description</dt>
+    <dd>This is a very long location description.</dd>    
+    <dt>Area</dt>
+    <dd>
+      <div id="map_canvas" class="dpmap" style="width: 100%; height: 200px"></div>      
+      <table>
+        <caption>Other projects that are visible on the map:</caption>
+        <thead>
+          <tr>
+            <th><input type="checkbox" checked="true" /></th>
+            <th>Id</th>
+            <th>Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><input type="checkbox" checked="true" /></td>
+            <td>782</td>
+            <td>
+              <dl>
+                <dt>Name</dt>
+                <dd>This is a long project name. This is a long project name. </dd>
+                <dt>Coordinator</dt>
+                <dd>KPN - Region North</dd>
+                <dt>Type</dt>
+                <dd>Road reconstruction</dd>
+                <dt>Period</dt>
+                <dd>11/1/2011 -  10/29/2012</dd>
+              </dl>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" checked="true" /></td>
+            <td>6123</td>
+            <td>
+              <dl>
+                <dt>Name</dt>
+                <dd>This is a long project name</dd>
+                <dt>Coordinator</dt>
+                <dd>ENEXIS - Region North</dd>
+                <dt>Type</dt>
+                <dd>Cables, Pipes and Sewers</dd>
+                <dt>Period</dt>
+                <dd>11/1/2011 -  10/29/2012</dd>
+              </dl>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" checked="true" /></td>
+            <td>123</td>
+            <td>
+              <dl>
+                <dt>Name</dt>
+                <dd>This is a long project name</dd>
+                <dt>Coordinator</dt>
+                <dd>KPN - Region North</dd>
+                <dt>Type</dt>
+                <dd>Road reconstruction</dd>
+                <dt>Period</dt>
+                <dd>11/1/2011 -  10/29/2012</dd>
+              </dl>
+            </td>
+          </tr>
+          <tr>
+            <td><input type="checkbox" checked="true" /></td>
+            <td>723</td>
+            <td>
+              <dl>
+                <dt>Name</dt>
+                <dd>This is a long project name</dd>
+                <dt>Coordinator</dt>
+                <dd>KPN - Region North</dd>
+                <dt>Type</dt>
+                <dd>Road reconstruction</dd>
+                <dt>Period</dt>
+                <dd>11/1/2011 -  10/29/2012</dd>
+              </dl>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </dd> 
+  </dl>  
+</div>
+<!-- details page sidebar -->
+<div id="dpsb" class="bbs">
+  <div id="actionlist">
+    <h1>Allowed actions</h1>
+    <ul class="allowedactions">
+      <li><a href="#">Delete project</a></li>
+    </ul>
+  </div>
+  <div id="relatedto">
+    <h1>Related to</h1>
+    <ul class="relatedto">
+      <li><img src="./img/icons/permit.png" alt="" /><a href="#">Permit 61233</a><br /><span class="desc">Loopstreet 16, 1234 Cape Town. 3/2/2012 - 3/2/2012</span></li>
+      <li><img src="./img/icons/roadwork.png" alt="" /><a href="#">Roadwork 23</a> <span class="status">(Approval requested)</span><br /><span class="desc">Loopstreet 16, 1234 Cape Town. 3/2/2012 8:00 - 3/2/2012 14:00</span></li>
+      <li><img src="./img/icons/roadwork.png" alt="" /><a href="#">Roadwork 235</a> <span class="status">(Rejected)</span><br /><span class="desc">Loopstreet 18, 1234 Cape Town. 4/2/2012 8:00 - 4/2/2012 14:00</span></li>
+    </ul>
+  </div>
+  <div id="attachments">
+    <h1>Attachments <span class="manage">(<a href="#">manage attachments</a>)</span></h1>
+    <ul class="attachments">
+      <li><span class="date">10/02</span> <a href="#">Attachment 1</a></li>
+      <li><span class="date">04/02</span> <a href="#">Attachment 2</a></li>
+      <li><span class="date">03/02</span> <a href="#">Attachment 3</a></li>
+      <li><span class="date">01/02</span> <a href="#">Attachment 4</a></li>
+      <li><span class="date">01/02</span> <a href="#">Attachment 4</a></li>
+    </ul>
+    <div class="showall"><a href="#">Show all (11) attachments...</a></div>
+  </div>
+  <div id="notes">
+    <h1>Notes <span class="manage">(<a href="#">manage notes</a>)</span></h1>
+    <ul class="notes">
+      <li>
+        <ul>
+          <li class="author">Peter Jackson <span class="organisation">(ENEXIS - Regio Noord)</span></li>
+          <li class="notetxt">Some note here. This can be a very interesting piece of text. This can be a very interesting piece of text. This can be a very interesting piece of text. </li>
+          <li class="timestamp">20-02-2012 10:15</li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li class="author">Peter Jackson <span class="organisation">(ENEXIS - Regio Noord)</span></li>
+          <li class="notetxt">Some note here. This can be a very interesting piece of text. This can be a very interesting piece of text.</li>
+          <li class="timestamp">20-02-2012 10:15</li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li class="author">Peter Jackson <span class="organisation">(ENEXIS - Regio Noord)</span></li>
+          <li class="notetxt">Some note here. This can be a very interesting piece of text. This can be a very interesting piece of text.</li>
+          <li class="timestamp">20-02-2012 10:15</li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li class="author">Peter Jackson <span class="organisation">(ENEXIS - Regio Noord)</span></li>
+          <li class="notetxt">Some note here. This can be a very interesting piece of text. This can be a very interesting piece of text.</li>
+          <li class="timestamp">20-02-2012 10:15</li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li class="author">Peter Jackson <span class="organisation">(ENEXIS - Regio Noord)</span></li>
+          <li class="notetxt">Some note here. This can be a very interesting piece of text. This can be a very interesting piece of text.</li>
+          <li class="timestamp">20-02-2012 10:15</li>
+        </ul>
+      </li>
+    </ul>
+    <div class="showall"><a href="#">Show all (8) notes...</a></div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<head>
+  <title>MOOR</title>
+  <link rel="stylesheet" href="./styles/reset.css" type="text/css" media="screen, print">
+  <link rel="stylesheet" href="./styles/shared.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="./styles/pages.css" type="text/css" media="screen" />
+  <link rel="stylesheet" href="./styles/jquery.qtip.min.css" type="text/css" media="screen" />   
+  <link rel="stylesheet" href="./styles/print.css" type="text/css" media="print">
+  <!--[if lt IE 8]>
+  <link rel="stylesheet" href="./styles/iescreen.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="./styles/ieprint.css" type="text/css" media="print">
+  <![endif]-->  
+  <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+  <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBHhnlK9aEZCL9BPy5_T0iO_fP_cHyUUdo&sensor=false">
+  </script>
+  <script type="text/javascript" src="./js/application.js"></script>
+  <script type="text/javascript" src="./js/jquery.qtip.min.js"></script>
+</head>
+<body onload="initialize()">
+<!-- menu placeholder -->
+<div id="nav" style="height: 70px; background-color: #4C4C4C;">
+</div>
+<!-- permit task list -->
+<div id="tl" onclick="showPanelAssessPermit()">
+  <ul>
+    <li><img src="./img/tasklist.png" alt="" style=
+       "vertical-align: middle"/>&nbsp;&nbsp;&nbsp;Beoordelen melding</li>
+  </ul>
+</div>
+<div id="assesspermit" class="tp">
+  <form action="post">    
+    <input type="radio" id="approve" name="assess" value="approve" checked />
+    <dl class="fieldsetapprove selected">
+      <dt class="radiobtn"><label for="approve" class="approve">Goedkeuren</label></dt>
+      <dd>&nbsp;</dd>
+      <dt><label for="ownerrepaves">Netbeheerder straat dicht</label></dt>
+      <dd><input type="checkbox" id="ownerrepaves" /></dd>
+      <dt><label for="endrepaving">Aannemer wegbeheerder</label></dt>
+      <dd>
+        <select>
+          <option>BAM</option>
+          <option>Heijmans</option>
+          <option>BAAS B.V.</option>
+        </select>
+      </dd>
+      <dt><label for="endrepaving" class="required">Einde dichtstraten</label></dt>
+      <dd><input type="text" id="endrepaving" size="7" maxlength="5" value="23/3/2012" /><input type="text" id="validityfrom" size="3" maxlength="5" value="14:00" /></dd>
+      <dt><label for="referencepsm1">Kenmerk 1 wegbeheerder</label></dt>
+      <dd><input type="text" id="referencepsm1" size="15" maxlength="20" /><br /></dd>
+      <dt><label for="referencepsm2">Kenmerk 2 wegbeheerder</label></dt>
+      <dd><input type="text" id="referencepsm2" size="15" maxlength="20" /><br /></dd>
+      <dt><label for="internalcomment">Opmerking</label></dt>
+      <dd><textarea id="internalcomment" rows="2" cols="60"></textarea></dd>     
+    </dl>
+    <input type="radio" id="reject" name="assess" value="reject" />
+    <dl class="fieldsetreject">
+      <dt class="radiobtn"><label for="reject" class="reject">Afkeuren</label></dt>
+      <dd>&nbsp;</dd>
+      <dt><label for="reasonrejection" class="required">Reden afkeuren</label></dt>          
+      <dd><textarea id="reasonrejection" rows="2" cols="60"></textarea></dd>       
+    </dl>
+    <div class="submitform">
+      <input type="button" name="save" value="Bevestigen" onclick="assessPermitSubmit();" />  
+   </div>
+  </form>
+</div>
+<!-- permit details page -->
+<div id="dp" class="rw bbs">
+  <div id="dphead">
+    <h1>Melding 324</h1>
+    <a href="#"><img src="./img/icons/pdf.png" alt="" /></a>
+    <a href="#" onclick="window.print();return false;" title="blaat"><img src="./img/icons/print.png" alt="" /></a>  
+  </div>
+  <h2>Melding</h2>
+  <dl>
+    <dt>Status</dt>
+    <dd>Goedkeuring aangevraagd <span class="desc">(24-2-2012 10:15 John Schoenmaker - ENEXIS - Regio West)</span> <a href="#" class="viewhistory">geschiedenis weergeven</a></dd>
+    <dt>Netbeheerder</dt>
+    <dd>ENEXIS - Regio Noord <span class="desc">(030-1234567; <a href="#">email@enexis.nl</a>; Voorstreet 300, 1234AB Amsterdam)</span></dd>
+    <dt>Aanvrager</dt>
+    <dd>John de Vries <span class="desc">(aangevraagd op 23-2-2012 10:13)</span></dd>
+  </dl>
+  <dl class="editable">
+    <button type="submit" class="edit" title="Wijzigen"><img src="./img/icons/edit.png" alt="" /></button>
+    <dt>Wegbeheerder</dt>
+    <dd>Amsterdam - Noord <span class="desc">(030-1234567; <a href="#">email@amsterdam.nl</a>)</span></dd>
+    <dt>Type werk</dt>
+    <dd>Klein geprogrammeerd werk</dd>
+    <dt>Combiwerk</dt>
+    <dd>Nee</dd>
+    <dt>Zelf dichtstraten</dt>
+    <dd>Ja</dd>
+    <dt>Aannemer</dt>
+    <dd>BAM - Regio Noord <span class="desc">(030-1234567; <a href="#">email@bam.nl</a>)</span></dd>
+    <dt>Contactgegevens uitvoerder</dt>
+    <dd>Piet de Uitvoerder - 030-1234567</dd>
+    <dt>Datum start werk</dt>
+    <dd>10-5-2012 10:00</dd>
+    <dt>Datum overdracht</dt>
+    <dd>11-5-2012 12:00</dd>
+    <dt>Datum afronden</dt>
+    <dd>12-5-2012 14:00</dd>
+    <dt>Adres</dt>
+    <dd>Kerkstraat 300, 1234AB Amsterdam</dd>
+    <dt>&nbsp;</dt>
+    <dd><div id="map_canvas" class="dpmap" style="width: 100%; height: 200px"></div></dd>
+  </dl>
+  <dl class="editable">
+    <button type="submit" class="edit" title="Wijzigen"><img src="./img/icons/edit.png" alt="" /></button>
+    <dt>Kostenverdeling</dt>
+    <dd>
+      <table class="costbreakdown">
+        <tbody>
+          <tr>
+            <td>70%</td>
+            <td>KPN - Midden Nederland</td>
+          </tr>
+          <tr>
+            <td>20%</td>
+            <td>ENEXIS - Midden Nederland</td>
+          </tr>
+          <tr>
+            <td>10%</td>
+            <td>Ziggo - Midden Nederland</td>
+          </tr>
+        </tbody>
+      </table>
+    </dd>
+  </dl>
+  <dl class="editable">
+    <button type="submit" class="edit" title="Wijzigen"><img src="./img/icons/edit.png" alt="" /></button>
+    <dt>Functie locatie</dt>
+    <dd>Brug, Voetpad</dd>
+    <dt>Voorziene verkeershinder</dt>
+    <dd>Geen</dd>
+    <dt>Asfalt nodig</dt>
+    <dd>Nee</dd>
+    <dt>Huisaansluiting</dt>
+    <dd>Machinaal graven</dd>
+    <dt>KLIC nummer</dt>
+    <dd>KLIC-723423</dd>
+    <dt>Kenmerk netbeheerder</dt>
+    <dd>AS612323</dd>
+    <dt>Overig</dt>
+    <dd>Dit is een veld voor een opmerking.</dd>
+  </dl>
+  <h2>Intern wegbeheerder</h2>
+  <dl class="editable">
+    <button type="submit" class="edit" title="Wijzigen"><img src="./img/icons/edit.png" alt="" /></button>
+    <dt>Kenmerk 1</dt>
+    <dd>DA-72342343</dd>
+    <dt>Kenmerk 2</dt>
+    <dd>72-ASDAKSDAA</dd>
+  </dl>
+  <h2>Intern netbeheerder</h2>
+  <dl class="editable">
+    <button type="submit" class="edit" title="Wijzigen"><img src="./img/icons/edit.png" alt="" /></button>
+    <dt>KPN - Midden Nederland</dt>
+    <dd>Kenmerk: 623-ASDKASD; Custom field1: 613123; Custom field2: 78234</dd>
+    <dt>ENEXIS - Midden Nederland</dt>
+    <dd>Kenmerk: 72-WTAQQW; Custom field2: 2134</dd>
+    <dt>Ziggo - Midden Nederland</dt>
+    <dd>Kenmerk: 834534</dd>
+  </dl>
+  <h2>Straatwerk netbeheerder</h2>
+  <dl class="editable">
+    <button type="submit" class="edit" title="Wijzigen"><img src="./img/icons/edit.png" alt="" /></button>
+    <dt>Materialen</dt>
+    <dd>
+      <table class="paving">
+        <tbody>
+          <tr>
+            <td class="desc">Asfalt (15 cm dik; lengte x breedte in meters)</td>
+            <td class="size">5x3x10</td>
+            <td class="quantity">150</td>
+            <td class="unittype">m&sup3;</td>
+            <td class="itemprice">&#8364; <a href="#">64,54</a></td>
+          </tr>
+          <tr>
+            <td class="desc">Zware band (29/30x24x100 cm; in meters)</td>
+            <td class="size"></td>
+            <td class="quantity">12</td>
+            <td class="unittype">m</td>
+            <td class="itemprice">&#8364; <a href="#">10,14</a></td>
+          </tr>
+          <tr>
+            <td class="desc">Klinkers &lt; = 15m2</td>
+            <td class="size">2x11,5</td>
+            <td class="quantity">23</td>
+            <td class="unittype">m&sup2;</td>
+            <td class="itemprice">&#8364; <a href="#">12,34</a></td>
+          </tr>
+          <tr>
+            <td class="desc">Antiparkeerbanden (15x45x120 cm; per stuk)</td>
+            <td class="size"></td>
+            <td class="quantity">2</td>
+            <td class="unittype">stuks</td>
+            <td class="itemprice">&#8364; <a href="#">15,37</a></td>
+          </tr>  
+          <tr>
+            <td class="desc">Herstel Bestrating nieuw werk</td>
+            <td class="size">2 x 7,5</td>
+            <td class="quantity">15</td>
+            <td class="unittype">m&sup2;</td>
+            <td class="itemprice">&#8364; <a href="#">5,37</a></td>
+          </tr>   
+          <tr>
+            <td class="desc"></td>
+            <td class="size"></td>
+            <td class="quantity"></td>
+            <td class="unittype"></td>
+            <td class="itemprice subtotal">&#8364; 2500,31</td>
+          </tr>    
+        </tbody>
+      </table>
+    </dd>
+    <dt>Toeslagen</dt>
+    <dd>
+      <table>
+        <tbody>
+          <tr>
+            <td class="desc">NIETS-bon</td>
+            <td class="size"></td>
+            <td class="quantity"></td>
+            <td class="unittype"></td>
+            <td class="itemprice">&#8364; 100,00</td>
+          </tr>
+          <tr>
+            <td class="desc">Verdichten</td>
+            <td class="size"></td>
+            <td class="quantity"></td>
+            <td class="unittype"></td>
+            <td class="itemprice">&#8364; 150,00</td>
+          </tr>
+          <tr>
+            <td class="desc"></td>
+            <td class="size"></td>
+            <td class="quantity"></td>
+            <td class="unittype"></td>
+            <td class="itemprice subtotal">&#8364; 250,00</td>
+          </tr>          
+        </tbody>
+      </table>
+    </dd>
+    <dt>Additionele kosten</dt>
+    <dd>
+      <table>
+        <tbody>
+          <tr>
+            <td class="desc">Overige kosten</td>
+            <td class="size"></td>
+            <td class="quantity"></td>
+            <td class="unittype"></td>
+            <td class="itemprice">&#8364; 120,00</td>
+          </tr>     
+        </tbody>
+      </table>
+    </dd>
+    <dt>Totaal</dt>
+    <dd>
+      <table>
+        <tbody>
+          <tr>
+            <td class="desc"></td>
+            <td class="size"></td>
+            <td class="quantity"></td>
+            <td class="unittype"></td>
+            <td class="itemprice total">  &#8364; 4300,10</td>
+          </tr>          
+        </tbody>
+      </table>
+    </dd>
+  </dl>
+<h2>Straatwerk wegbeheerder</h2>
+  <dl class="editable">
+    <button type="submit" class="edit" title="Wijzigen"><img src="./img/icons/edit.png" alt="" /></button>
+    <dt>Materialen</dt>
+    <dd>
+      <table class="paving">
+        <tbody>
+          <tr>
+            <td class="desc">Asfalt (15 cm dik; lengte x breedte in meters)</td>
+            <td class="size">5x3x10</td>
+            <td class="quantity">150</td>
+            <td class="unittype">m&sup3;</td>
+            <td class="itemprice">&#8364; <a href="#">64,54</a></td>
+          </tr>
+          <tr>
+            <td class="desc">Zware band (29/30x24x100 cm; in meters)</td>
+            <td class="size"></td>
+            <td class="quantity">12</td>
+            <td class="unittype">m</td>
+            <td class="itemprice">&#8364; <a href="#">10,14</a></td>
+          </tr>
+          <tr>
+            <td class="desc">Klinkers &lt; = 15m2</td>
+            <td class="size">2x11,5</td>
+            <td class="quantity">23</td>
+            <td class="unittype">m&sup2;</td>
+            <td class="itemprice">&#8364; <a href="#">12,34</a></td>
+          </tr>
+          <tr>
+            <td class="desc">Herstel Bestrating nieuw werk</td>
+            <td class="size">2 x 7,5</td>
+            <td class="quantity">15</td>
+            <td class="unittype">m&sup2;</td>
+            <td class="itemprice">&#8364; <a href="#">5,37</a></td>
+          </tr>   
+          <tr>
+            <td class="desc"></td>
+            <td class="size"></td>
+            <td class="quantity"></td>
+            <td class="unittype"></td>
+            <td class="itemprice subtotal">&#8364; 2500,31</td>
+          </tr>    
+        </tbody>
+      </table>
+    </dd>
+    <dt>Toeslagen</dt>
+    <dd>
+      <table>
+        <tbody>
+          <tr>
+            <td class="desc">NIETS-bon</td>
+            <td class="size"></td>
+            <td class="quantity"></td>
+            <td class="unittype"></td>
+            <td class="itemprice">&#8364; 100,00</td>
+          </tr>
+          <tr>
+            <td class="desc"></td>
+            <td class="size"></td>
+            <td class="quantity"></td>
+            <td class="unittype"></td>
+            <td class="itemprice subtotal">&#8364; 100,00</td>
+          </tr>          
+        </tbody>
+      </table>
+    </dd>
+    <dt>Additionele kosten</dt>
+    <dd>
+      <table>
+        <tbody>
+          <tr>
+            <td class="desc">-</td>
+            <td class="size"></td>
+            <td class="quantity"></td>
+            <td class="unittype"></td>
+            <td class="itemprice">&#8364; 0,00</td>
+          </tr>     
+        </tbody>
+      </table>
+    </dd>
+    <dt>Totaal</dt>
+    <dd>
+      <table>
+        <tbody>
+          <tr>
+            <td class="desc"></td>
+            <td class="size"></td>
+            <td class="quantity"></td>
+            <td class="unittype"></td>
+            <td class="itemprice total">  &#8364; 4300,10</td>
+          </tr>          
+        </tbody>
+      </table>
+    </dd>
+  </dl>
+  <h2>Export</h2>
+  <dl>
+    <dt>Exportnummer</dt>
+    <dd>2274</dd>
+  </dl>
+</div>
+<!-- details page sidebar -->
+<div id="dpsb" class="bbs">
+  <div id="actionlist">
+    <h1>Overige acties</h1>
+    <ul class="allowedactions">
+      <li><a href="#">Werk annuleren</a></li>
+    </ul>
+  </div>
+  <div id="relatedto">
+    <h1>Gerelateerd aan</h1>
+    <ul class="relatedto">
+      <li><img src="./img/icons/project.png" alt="" /><a href="#">Project 61233</a><br /><span class="desc">Hier komt de naam van het project</span></li>
+      <li><img src="./img/icons/permit.png" alt="" /><a href="#">Vergunning 23</a> <span class="status">(Goedgekeurd)</span><br /><span class="desc">KPN - Midden Nederland. Voorstraat 16, 1234 Amsterdam. 3/2/2012 - 3/2/2012</span></li>
+      <li><img src="./img/icons/permit.png" alt="" /><a href="#">Vergunning 235</a> <span class="status">(Gestaakt)</span><br /><span class="desc">ENEXIS - Midden Nederland. Voorstraat 13, 1234 Amsterdam. 1/2/2012 - 2/2/2012</span></li>
+      <li><img src="./img/icons/permit.png" alt="" /><a href="#">Vergunning 113</a> <span class="status">(Goedgekeurd)</span><br /><span class="desc">Ziggo - Midden Nederland. Voorstraat 18, 1234 Amsterdam. 1/2/2012 - 2/2/2012</span></li>
+    </ul>
+  </div>
+  <div id="attachments">
+    <h1>Bijlagen <span class="manage">(<a href="#">bijlagen wijzigen</a>)</span></h1>
+    <ul class="attachments">
+      <li><span class="date">10/02</span> <a href="#">Naam bijlage 1</a></li>
+      <li><span class="date">04/02</span> <a href="#">Naam bijlage 2</a></li>
+      <li><span class="date">03/02</span> <a href="#">Naam bijlage 3</a></li>
+      <li><span class="date">01/02</span> <a href="#">Naam bijlage 4</a></li>
+      <li><span class="date">01/02</span> <a href="#">Naam bijlage 4</a></li>
+    </ul>
+    <div class="showall"><a href="#">Alle (11) bijlagen weergeven...</a></div>
+  </div>
+  <div id="notes">
+    <h1>Notities <span class="manage">(<a href="#">notities wijzigen</a>)</span></h1>
+    <ul class="notes">
+      <li>
+        <ul>
+          <li class="author">Peter van de Horst <span class="organisation">(ENEXIS - Regio Noord)</span></li>
+          <li class="notetxt">Opmerking hier. Die kan meerdere regels in beslag nemen. Dit is een test. </li>
+          <li class="timestamp">20-02-2012 10:15</li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li class="author">Peter van de Horst <span class="organisation">(ENEXIS - Regio Noord)</span></li>
+          <li class="notetxt">Opmerking hier. Die kan meerdere regels in beslag nemen. Dit is een test.</li>
+          <li class="timestamp">20-02-2012 10:15</li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li class="author">Peter van de Horst <span class="organisation">(ENEXIS - Regio Noord)</span></li>
+          <li class="notetxt">Opmerking hier. Die kan meerdere regels in beslag nemen. Dit is een test.</li>
+          <li class="timestamp">20-02-2012 10:15</li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li class="author">Peter van de Horst <span class="organisation">(ENEXIS - Regio Noord)</span></li>
+          <li class="notetxt">Opmerking hier. Die kan meerdere regels in beslag nemen. Dit is een test.</li>
+          <li class="timestamp">20-02-2012 10:15</li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li class="author">Peter van de Horst <span class="organisation">(ENEXIS - Regio Noord)</span></li>
+          <li class="notetxt">Opmerking hier. Die kan meerdere regels in beslag nemen. Dit is een test.</li>
+          <li class="timestamp">20-02-2012 10:15</li>
+        </ul>
+      </li>
+    </ul>
+    <div class="showall"><a href="#">Alle (8) notities weergeven...</a></div>
+  </div>
+</div>
+</body>
+</html>

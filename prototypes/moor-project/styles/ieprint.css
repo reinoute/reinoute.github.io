@@ -1,0 +1,19 @@
+/*
+    IE6 and IE7 hacks for PRINTING go in here
+*/
+
+/* Override box size for label/value pairs on Details page */
+#dp dt {
+  width: 24.5%;   
+  white-space: nowrap;
+  overflow: hidden; /* Because 'word-wrap: break-word' does not work in combination with 'white-space nowrap'. Should fix this properly later. */
+  text-overflow: ellipsis; 
+} 
+
+#dp dd {
+  width: 65%;
+  white-space: nowrap;
+}
+
+
+

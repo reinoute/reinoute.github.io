@@ -1,0 +1,210 @@
+body {
+	font-family: Georgia, "Times New Roman", serif;
+	background: none;
+	font-size: 11pt;
+  color: black;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* Make links visible */
+a:link, a:visited, a:active {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+/* Make headings stand out */
+h1, h2, h3, h4, h5, h6 {
+  font-family:"Helvetica Neue", Arial, "Lucida Grande", sans-serif;
+  page-break-after: avoid; /* ..and avoid the page breaks */
+}
+
+code {
+  font:.9em "Courier New", Monaco, Courier, monospace;
+}
+
+hr {
+  background:#ccc;
+  color:#ccc;
+  width:100%;
+  height:2px;
+  margin:2em 0;
+  padding:0;
+  border:none;
+}
+
+dl {
+  overflow: auto;
+}
+
+dd, dt {
+  float: left;
+  display: block;
+  line-height: 1.3;
+  margin-bottom: 4px; /* A small line-height and this margin helps to see when a label value spans multiple lines */ 
+}
+
+dt {    
+  clear: both;
+}
+
+a img {
+  border:none;
+}
+
+/* Hide elements for printing */
+#nav {
+  display: none !important; 
+}
+
+/* STYLES FOR PRINTING DETAIL PAGES */
+
+/* Hide task list  */
+#tl {
+  display: none !important;
+}
+
+/* Hide task panel  */
+.tp {
+  display: none !important;
+}
+
+/* Hide edit buttons  */
+#dp button {
+  display: none !important;
+}
+
+/* Enlarge content areas (details page and details page sidebar) */
+#dp, #dpsb {
+  width: 100%;
+  float: none;
+  margin: 0;
+}
+
+#dp dt, dd {
+  box-sizing: border-box;
+  -webkit-box-sizing:border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+}
+
+#dp dt {
+  width: 25%;
+  color: #545454; 
+  padding-right: 10px; 
+}
+
+#dp dd {
+  width: 75%;
+}
+
+/* Hide the print and pdf icons */
+#dphead a img {
+  display: none;
+}
+
+/* Hide 'view history' link. TODO: expand the history */
+#dp a.viewhistory {
+  display: none;
+}
+
+#dp h1 {
+  font-size: 19px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+#dp h2 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 3px;
+}
+
+#dpsb h1 {
+  font-size: 16px;
+  font-weight: bold;
+  margin-top: 10px;
+}
+
+#dpsb a {
+  font-weight: normal; /* Do not show the links to related items in bold */
+}
+
+/* Hide action list */
+#actionlist {
+  display: none;
+}
+
+#relatedto img {
+  display: none;
+}
+
+#relatedto ul, #attachments ul {
+  list-style: square; 
+  margin-left: 17px;
+  margin-top: 8px;
+}
+
+#relatedto ul li, #attachments ul li {
+  margin-top: 3px;
+}
+
+
+/* Hide 'manage' hyperlinks and 'Show more'. TODO: expand all notes/attachments */
+#attachments span.manage, #notes span.manage, #attachments div.showall, #notes div.showall {
+  display: none;
+}
+
+#notes > ul > li {
+  margin-top: 8px;
+}
+
+#notes ul li.author {
+  color: #545454;
+}
+
+#notes ul li.timestamp {
+  font-style: italic;
+}
+
+/* Print styles for Project Details page */
+
+#dp.pr table {
+  font-size: 11px; 
+  width: 100%;
+}
+
+#dp.pr table caption {
+  text-align: left;
+  padding: 3px 0;
+  font-style: italic;
+}
+
+#dp.pr table th {
+  background-color: #CECECE;
+  text-align: left;  
+}
+
+#dp.pr table td {
+  vertical-align: top;   
+}
+
+#dp.pr table tr {
+  border-bottom: 1px solid #CECECE;    
+}
+
+#dp.pr table dl dt {
+  text-align: left;    
+}
+
+#dp.pr table dl dd {
+  padding-right: 0;   
+}
+
+
+
+
+

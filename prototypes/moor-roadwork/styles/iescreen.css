@@ -1,0 +1,64 @@
+/*
+    IE6 and IE7 hacks go in here
+*/
+
+/* Fix hasLayout bugs in IE6/IE7 */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
+  zoom: 1;
+}
+
+/* Hide the vertical scrollbar on the body element - IE6 only */
+* html body {
+  overflow: auto;
+  height: auto !important;
+}
+
+/* Override box size for Details page */
+#dp {
+	width: 68.5%; /* In shared.cs this is 70% */  
+}
+
+#dp h2 {
+  margin-left: 24.5%; /* In shared.cs this is 25% */
+}
+
+/* Override box size for sidebar on Details page */
+#dpsb {
+  width: 29%; /* In shared.css this is 30% */
+}
+
+/* Override box size for labels on Details page */
+#dp dt {
+  width: 21.5%; /* In shared.cs this is 25% */
+}
+
+#dp dd {
+  width: 69%; /* In shared.cs this is 75% */
+}
+
+/* Override box size for labels on Details page task panel */
+.tp dt {
+  width: 21.5%; /* In shared.cs this is 25% */
+}
+
+.tp dd {
+  width: 69%; /* In shared.cs this is 75% task panel */
+}
+
+
+
+
+
+
+
