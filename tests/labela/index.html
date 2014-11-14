@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>10 Commandments</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/normalize/3.0.1/normalize.min.css" media="all" rel="stylesheet" type="text/css">
+  <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Raleway:700,400' rel='stylesheet' type='text/css'>
+  <link href="foundation-icons.css" media="all" rel="stylesheet" type="text/css">
+  <link href="styles.css" media="all" rel="stylesheet" type="text/css">
+  <script type="text/javascript">
+  $( document ).ready(function() {
+  $(".container i").click(function ( e ) {
+      e.preventDefault();
+      $(".container i.active").removeClass("active"); 
+      $(this).addClass("active"); 
+    });
+  });
+  </script>
+</head>
+<body>
+  <header>10 Commandments</header>
+  <div class="container">        
+        <div class="spacer"></div>
+        <div class="circle"><div class="wrapcontent"><i class="fi-trash"></i><h1>Clean your shit up</h1><p>Nobody likes a messy work around. We all help eachother to clean up the mess around the bar, kitchen and lunch table. Make sure to put your cups in the dishwasher and turn it on when it’s full. Stay neat and help others.</p>
+          </div>
+        </div>
+        <i class="fi-torso"></i>
+        <i class="fi-calendar"></i>
+        <i class="fi-clock"></i>
+        <i class="fi-heart"></i>
+        <i class="fi-key"></i>
+        <i class="fi-lock"></i>
+        <i class="fi-price-tag"></i>
+        <i class="fi-comment"></i>
+        <i class="fi-trash active"></i>
+        <i class="fi-eye"></i>
+    </div>
+  </body>
+</html>
+
+
