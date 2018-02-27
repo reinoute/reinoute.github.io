@@ -1,74 +1,74 @@
 function unwrapExports (x) {
-	return x && x.__esModule ? x['default'] : x;
+    return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
 }
 
 function createCommonjsModule(fn, module) {
-	return module = { exports: {} }, fn(module, module.exports), module.exports;
+    return module = { exports: {} }, fn(module, module.exports), module.exports;
 }
 
 var lib = createCommonjsModule(function (module, exports) {
-'use strict';
+    'use strict';
 
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-var key = {
-  fullscreenEnabled: 0,
-  fullscreenElement: 1,
-  requestFullscreen: 2,
-  exitFullscreen: 3,
-  fullscreenchange: 4,
-  fullscreenerror: 5
-};
+    Object.defineProperty(exports, "__esModule", {
+        value: true
+    });
+    var key = {
+        fullscreenEnabled: 0,
+        fullscreenElement: 1,
+        requestFullscreen: 2,
+        exitFullscreen: 3,
+        fullscreenchange: 4,
+        fullscreenerror: 5
+    };
 
-var webkit = ['webkitFullscreenEnabled', 'webkitFullscreenElement', 'webkitRequestFullscreen', 'webkitExitFullscreen', 'webkitfullscreenchange', 'webkitfullscreenerror'];
+    var webkit = ['webkitFullscreenEnabled', 'webkitFullscreenElement', 'webkitRequestFullscreen', 'webkitExitFullscreen', 'webkitfullscreenchange', 'webkitfullscreenerror'];
 
-var moz = ['mozFullScreenEnabled', 'mozFullScreenElement', 'mozRequestFullScreen', 'mozCancelFullScreen', 'mozfullscreenchange', 'mozfullscreenerror'];
+    var moz = ['mozFullScreenEnabled', 'mozFullScreenElement', 'mozRequestFullScreen', 'mozCancelFullScreen', 'mozfullscreenchange', 'mozfullscreenerror'];
 
-var ms = ['msFullscreenEnabled', 'msFullscreenElement', 'msRequestFullscreen', 'msExitFullscreen', 'MSFullscreenChange', 'MSFullscreenError'];
+    var ms = ['msFullscreenEnabled', 'msFullscreenElement', 'msRequestFullscreen', 'msExitFullscreen', 'MSFullscreenChange', 'MSFullscreenError'];
 
 // so it doesn't throw if no window or document
-var document = typeof window !== 'undefined' && typeof window.document !== 'undefined' ? window.document : {};
+    var document = typeof window !== 'undefined' && typeof window.document !== 'undefined' ? window.document : {};
 
-var vendor = 'fullscreenEnabled' in document && Object.keys(key) || webkit[0] in document && webkit || moz[0] in document && moz || ms[0] in document && ms || [];
+    var vendor = 'fullscreenEnabled' in document && Object.keys(key) || webkit[0] in document && webkit || moz[0] in document && moz || ms[0] in document && ms || [];
 
-exports.default = {
-  requestFullscreen: function requestFullscreen(element) {
-    return element[vendor[key.requestFullscreen]]();
-  },
-  requestFullscreenFunction: function requestFullscreenFunction(element) {
-    return element[vendor[key.requestFullscreen]];
-  },
-  get exitFullscreen() {
-    return document[vendor[key.exitFullscreen]].bind(document);
-  },
-  addEventListener: function addEventListener(type, handler, options) {
-    return document.addEventListener(vendor[key[type]], handler, options);
-  },
-  removeEventListener: function removeEventListener(type, handler, options) {
-    return document.removeEventListener(vendor[key[type]], handler, options);
-  },
-  get fullscreenEnabled() {
-    return Boolean(document[vendor[key.fullscreenEnabled]]);
-  },
-  set fullscreenEnabled(val) {},
-  get fullscreenElement() {
-    return document[vendor[key.fullscreenElement]];
-  },
-  set fullscreenElement(val) {},
-  get onfullscreenchange() {
-    return document[('on' + vendor[key.fullscreenchange]).toLowerCase()];
-  },
-  set onfullscreenchange(handler) {
-    return document[('on' + vendor[key.fullscreenchange]).toLowerCase()] = handler;
-  },
-  get onfullscreenerror() {
-    return document[('on' + vendor[key.fullscreenerror]).toLowerCase()];
-  },
-  set onfullscreenerror(handler) {
-    return document[('on' + vendor[key.fullscreenerror]).toLowerCase()] = handler;
-  }
-};
+    exports.default = {
+        requestFullscreen: function requestFullscreen(element) {
+            return element[vendor[key.requestFullscreen]]();
+        },
+        requestFullscreenFunction: function requestFullscreenFunction(element) {
+            return element[vendor[key.requestFullscreen]];
+        },
+        get exitFullscreen() {
+            return document[vendor[key.exitFullscreen]].bind(document);
+        },
+        addEventListener: function addEventListener(type, handler, options) {
+            return document.addEventListener(vendor[key[type]], handler, options);
+        },
+        removeEventListener: function removeEventListener(type, handler, options) {
+            return document.removeEventListener(vendor[key[type]], handler, options);
+        },
+        get fullscreenEnabled() {
+            return Boolean(document[vendor[key.fullscreenEnabled]]);
+        },
+        set fullscreenEnabled(val) {},
+        get fullscreenElement() {
+            return document[vendor[key.fullscreenElement]];
+        },
+        set fullscreenElement(val) {},
+        get onfullscreenchange() {
+            return document[('on' + vendor[key.fullscreenchange]).toLowerCase()];
+        },
+        set onfullscreenchange(handler) {
+            return document[('on' + vendor[key.fullscreenchange]).toLowerCase()] = handler;
+        },
+        get onfullscreenerror() {
+            return document[('on' + vendor[key.fullscreenerror]).toLowerCase()];
+        },
+        set onfullscreenerror(handler) {
+            return document[('on' + vendor[key.fullscreenerror]).toLowerCase()] = handler;
+        }
+    };
 });
 
 var fscreen = unwrapExports(lib);
@@ -121,6 +121,7 @@ function Carousel(root) {
     var transitionEventName = getTransitionEndEventName();
     var transformPropertyName = getTransformPropertyName();
     var firstImage = images[0];
+    var firstImageLoaded = firstImage.complete && firstImage.naturalWidth !== 0;
     var DIRECTION = {LEFT: -1, INITIAL: 0, RIGHT: 1};
     var sizesAttribute = firstImage.sizes; // assuming all images have the same sizes attribute
     var itemWidth = null;
@@ -186,14 +187,6 @@ function Carousel(root) {
         anchor.addEventListener('click', onAnchorClick);
     });
 
-    firstImage.addEventListener('load', function () {
-        // we only get the properties of the first item, assuming
-        // that the other images have the same dimensions
-        getItemWidthAndTranslateZ();
-        // make the first visible item in the list focusable
-        updateTabindex();
-    });
-
     buttonNext.addEventListener('click', function () { return animate(DIRECTION.LEFT); });
     buttonPrevious.addEventListener('click', function () { return animate(DIRECTION.RIGHT); });
     buttonClose.addEventListener('click', closeFullscreen);
@@ -204,6 +197,23 @@ function Carousel(root) {
             closeFullscreen();
         }
     }, false);
+
+    // we only get the properties of the first image, assuming
+    // that the other images have the same dimensions and translateX
+    if (firstImageLoaded) {
+        // when image has been loaded already, initialize carousel
+        initialize();
+    } else {
+        // ...or when it's still loading, add an event listener to it
+        firstImage.addEventListener('load', function () { return initialize; });
+    }
+
+    function initialize() {
+
+        getItemWidthAndTranslateZ();
+        // make the first visible item in the list focusable
+        updateTabindex();
+    }
 
     function getTransitionEndEventName() {
         var element = document.createElement('div');
@@ -351,7 +361,7 @@ function Carousel(root) {
 
         // abort if an animation is still running on an item
         if (items.some(function (item) { return isAnimating(item); }))
-            { return; }
+        { return; }
 
         items.forEach(function (item, index) {
             // add event listener so that class can be removed after CSS transition has ended
