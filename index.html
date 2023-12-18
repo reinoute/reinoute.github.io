@@ -1,36 +1,277 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <title>reinout.com</title>
-    <meta name="description" content="reinout.com ">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta name="description" content="reinout.com " />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-108265760-1"></script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=UA-108265760-1"
+    ></script>
     <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'UA-108265760-1');
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "UA-108265760-1");
     </script>
     <style>
-        body {
-            margin: 0;
-        }
+      body {
+        margin: 0;
+      }
 
-        iframe {
-            position: absolute;
-            height: 100%;
-            width: 100%;
-        }
+      iframe {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+      }
     </style>
-</head>
+  </head>
 
-<body>
-    <iframe src="https://www.youtube.com/embed/HIcSWuKMwOw?autoplay=1&controls=0&cc_load_policy=1&loop=1" title="L@L"
-        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        allowfullscreen></iframe>
+  <body>
+    <main>
+      <h1>reinout.com</h1>
+      <p>Front-end development, UX and agile project management.</p>
+      <p>
+        E-mail:
+        <a href="mailto:reinout@reinout.com?subject=Request"
+          >reinout@reinout.com</a
+        >
+      </p>
+      <section>
+        <h2>Experience</h2>
+        <ul>
+          <li>
+            <b>Front-end Developer</b>
+            <ul>
+              <li>
+                Modular development, accessibility, web performance and
+                progressive enhancement
+              </li>
+              <li>React, Angular 2, Modular JS (ES6) without frameworks</li>
+            </ul>
+          </li>
+          <li>
+            <b>Scrum Master & Product Owner</b>
+            <ul>
+              <li>
+                Multi-disciplinary teams (backend, frontend, QA, design,
+                business)
+              </li>
+              <li>Stakeholder management in complex organisations</li>
+              <li>
+                Working with offshore / remote development teams (Europe, Latin
+                America, South Africa, India)
+              </li>
+            </ul>
+          </li>
+          <li>
+            <b>Business Analyst & IT Project Manager</b>
+            <ul>
+              <li>Large-scale web/hybrid/native app projects</li>
+              <li>User Experience (UX) design and process analysis</li>
+            </ul>
+          </li>
+        </ul>
+        <p>
+          More details on
+          <a href="https://www.linkedin.com/in/reinouteppinga">LinkedIn</a>
+        </p>
+      </section>
+      <section>
+        <h2>Open-source projects</h2>
+        <ul>
+          <li>
+            Progressive enhanced image carousel (
+            <a href="https://github.com/reinoute/progressive-carousel">GitHub</a
+            >)
+          </li>
+        </ul>
+        <div class="carousel" data-carousel>
+          <button class="carousel-close" data-carousel-close>CLOSE</button>
+          <button
+            class="carousel-previous"
+            aria-label="Previous"
+            data-carousel-previous
+          ></button>
+          <ul class="carousel-list" data-carousel-list>
+            <li class="carousel-item" data-carousel-item>
+              <a
+                class="carousel-anchor"
+                href="images/01-xl-min.jpg"
+                data-carousel-anchor
+              >
+                <img
+                  class="carousel-img"
+                  src="images/01-m-min.jpg"
+                  srcset="
+                    images/01-m-min.jpg  6400w,
+                    images/01-l-min.jpg  1280w,
+                    images/01-xl-min.jpg 3800w
+                  "
+                  sizes="(min-width: 1170px) 968px, 85vw"
+                  alt="Volcan Fuego in Guatemala"
+                  data-carousel-img
+                />
+              </a>
+            </li>
+            <li class="carousel-item" data-carousel-item>
+              <a
+                class="carousel-anchor"
+                href="images/02-xl-min.jpg"
+                data-carousel-anchor
+              >
+                <img
+                  class="carousel-img"
+                  src="images/02-m-min.jpg"
+                  srcset="
+                    images/02-m-min.jpg  6400w,
+                    images/02-l-min.jpg  1280w,
+                    images/02-xl-min.jpg 3800w
+                  "
+                  sizes="(min-width: 1170px) 968px, 85vw"
+                  alt="Volcan Acatenango in Guatemala"
+                  data-carousel-img
+                />
+              </a>
+            </li>
+            <li class="carousel-item" data-carousel-item>
+              <a
+                class="carousel-anchor"
+                href="images/03-xl-min.jpg"
+                data-carousel-anchor
+              >
+                <img
+                  class="carousel-img"
+                  src="images/03-m-min.jpg"
+                  srcset="
+                    images/03-m-min.jpg  6400w,
+                    images/03-l-min.jpg  1280w,
+                    images/03-xl-min.jpg 3800w
+                  "
+                  sizes="(min-width: 1170px) 968px, 85vw"
+                  alt="Coworking near Lago Atitlan in Guatemala"
+                  data-carousel-img
+                />
+              </a>
+            </li>
+            <li class="carousel-item" data-carousel-item>
+              <a
+                class="carousel-anchor"
+                href="images/04-xl-min.jpg"
+                data-carousel-anchor
+              >
+                <img
+                  class="carousel-img"
+                  src="images/04-m-min.jpg"
+                  srcset="
+                    images/04-m-min.jpg  6400w,
+                    images/04-l-min.jpg  1280w,
+                    images/04-xl-min.jpg 3800w
+                  "
+                  sizes="(min-width: 1170px) 968px, 85vw"
+                  alt="Sunset on Jiquililo beach Nicaragua"
+                  data-carousel-img
+                />
+              </a>
+            </li>
+            <li class="carousel-item" data-carousel-item>
+              <a
+                class="carousel-anchor"
+                href="images/05-xl-min.jpg"
+                data-carousel-anchor
+              >
+                <img
+                  class="carousel-img"
+                  src="images/05-m-min.jpg"
+                  srcset="
+                    images/05-m-min.jpg  6400w,
+                    images/05-l-min.jpg  1280w,
+                    images/05-xl-min.jpg 3800w
+                  "
+                  sizes="(min-width: 1170px) 968px, 85vw"
+                  alt="Volcan Telica steaming fumes"
+                  data-carousel-img
+                />
+              </a>
+            </li>
+            <li class="carousel-item" data-carousel-item>
+              <a
+                class="carousel-anchor"
+                href="images/06-xl-min.jpg"
+                data-carousel-anchor
+              >
+                <img
+                  class="carousel-img"
+                  src="images/06-m-min.jpg"
+                  srcset="
+                    images/06-m-min.jpg  6400w,
+                    images/06-l-min.jpg  1280w,
+                    images/06-xl-min.jpg 3800w
+                  "
+                  sizes="(min-width: 1170px) 968px, 85vw"
+                  alt="Dog chilling in El Castillo (Nicaragua)"
+                  data-carousel-img
+                />
+              </a>
+            </li>
+            <li class="carousel-item" data-carousel-item>
+              <a
+                class="carousel-anchor"
+                href="images/07-xl-min.jpg"
+                data-carousel-anchor
+              >
+                <img
+                  class="carousel-img"
+                  src="images/07-m-min.jpg"
+                  srcset="
+                    images/07-m-min.jpg  6400w,
+                    images/07-l-min.jpg  1280w,
+                    images/07-xl-min.jpg 3800w
+                  "
+                  sizes="(min-width: 1170px) 968px, 85vw"
+                  alt="Volcan Fuego in Guatemala"
+                  data-carousel-img
+                />
+              </a>
+            </li>
+            <li class="carousel-item" data-carousel-item>
+              <a
+                class="carousel-anchor"
+                href="images/08-xl-min.jpg"
+                data-carousel-anchor
+              >
+                <img
+                  class="carousel-img"
+                  src="images/08-m-min.jpg"
+                  srcset="
+                    images/08-m-min.jpg  6400w,
+                    images/08-l-min.jpg  1280w,
+                    images/08-xl-min.jpg 3800w
+                  "
+                  sizes="(min-width: 1170px) 968px, 85vw"
+                  alt="A happy pig in Nicaragua"
+                  data-carousel-img
+                />
+              </a>
+            </li>
+          </ul>
+          <button
+            class="carousel-next"
+            aria-label="Next"
+            data-carousel-next
+          ></button>
+        </div>
+      </section>
+    </main>
+    <script type="module">
+      import Carousel from "./progressive-carousel.module.js";
+      Carousel.initializeAll();
+    </script>
+  </body>
 </html>
